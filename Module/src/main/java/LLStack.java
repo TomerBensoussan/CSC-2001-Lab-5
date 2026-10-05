@@ -1,7 +1,24 @@
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-record Pair(String str, Pair rest){}
+record Pair(String str, Pair rest){
+    static int length(Pair p){
+        return switch(p){
+            case null -> 0;
+            case Pair(String s, Pair r) -> {
+                yield 1 + length(r);
+            }
+        };
+    }
+    static Pair reverse(Pair lst) {
+        Pair result = null;
+        while (lst != null) {
+            result = new Pair(lst.str(), result);
+            lst = lst.rest();
+        }
+        return result;
+    }
+}
 public class LLStack {
     Pair elts;
     LLStack(Pair elts){
@@ -41,11 +58,12 @@ public class LLStack {
         }
     }
     int llsize(){
-        switch(this.elts){
+        /*switch(this.elts){
             case null: return 0;
             case Pair(String f, Pair r):
                 return 1 + new LLStack(r).llsize();
-        }
+        }*/
+        return Pair.length(this.elts);
     }
     boolean llis_empty(){
         switch(this.elts){

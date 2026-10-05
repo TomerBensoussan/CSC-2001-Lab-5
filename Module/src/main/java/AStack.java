@@ -40,6 +40,7 @@ public class AStack {
         MaybelengthenArr();
         this.list[actLength-1] = elt;
     }
+    //deletes value away from end of list
     String apop(){
         if(actLength < 1){
             throw new NoSuchElementException("Empty List");
@@ -49,15 +50,18 @@ public class AStack {
         actLength--;
         return elt;
     }
+    //looks at value at the end of list
     String apeep(){
         if(actLength < 1){
             throw new NoSuchElementException("Empty List");
         }
         return this.list[actLength-1];
     }
+    //checks size of array
     int asize(){
         return actLength;
     }
+    //checks if list is empty
     boolean ais_empty(){
         return (actLength == 0);
     }
